@@ -7,7 +7,6 @@
 
 import Foundation
 
-// Swift Concurreny to handle threads switching
 class RecipeAPI {
     static let shared = RecipeAPI()
     
