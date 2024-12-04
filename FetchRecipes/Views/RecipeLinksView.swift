@@ -17,12 +17,20 @@ struct RecipeLinksView: View {
                 Link("View Source Recipe", destination: source_url)
                     .font(.headline)
                     .foregroundColor(.blue)
+            } else {
+                Text("No source recipe available.")
+                    .font(.subheadline)
+                    .foregroundColor(.gray)
             }
 
             if let youtube_url = youtube_url {
                 Link("Watch on YouTube", destination: youtube_url)
                     .font(.headline)
                     .foregroundColor(.blue)
+            } else {
+                Text("No YouTube video available.")
+                    .font(.subheadline)
+                    .foregroundColor(.gray)
             }
         }
         .padding(.top, 16)

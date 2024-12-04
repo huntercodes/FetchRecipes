@@ -8,6 +8,7 @@
 import Foundation
 import Combine
 
+// MainActor to ensure UI updates on main thread
 @MainActor
 class RecipeListViewModel: ObservableObject {
     @Published var recipes: [Recipe] = []

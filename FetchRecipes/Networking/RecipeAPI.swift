@@ -7,11 +7,7 @@
 
 import Foundation
 
-enum APIError: Error {
-    case malformedData
-    case networkError
-}
-
+// Swift Concurreny to handle threads switching
 class RecipeAPI {
     static let shared = RecipeAPI()
     
