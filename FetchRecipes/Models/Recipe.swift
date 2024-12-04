@@ -7,22 +7,22 @@
 
 import Foundation
 
-struct Recipe: Codable, Identifiable {
+struct Recipe: Codable, Identifiable, Hashable {
     let id: UUID
     let cuisine: String
     let name: String
-    let source_url: URL?
-    let youtube_url: URL?
-    let photo_url_small: URL?
-    let photo_url_large: URL?
-    
+    let photoURLSmall: URL?
+    let photoURLLarge: URL?
+    let sourceURL: URL?
+    let youtubeURL: URL?
+
     enum CodingKeys: String, CodingKey {
         case id = "uuid"
         case cuisine
         case name
-        case source_url = "www.recipes.com"
-        case youtube_url = "www.youtube.com"
-        case photo_url_small = "photo_url_small"
-        case photo_url_large = "photo_url_large"
+        case photoURLSmall = "photo_url_small"
+        case photoURLLarge = "photo_url_large"
+        case sourceURL = "source_url"
+        case youtubeURL = "youtube_url"
     }
 }

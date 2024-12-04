@@ -11,7 +11,7 @@ struct RecipeListView: View {
     @StateObject private var viewModel = RecipeListViewModel()
 
     var body: some View {
-        NavigationView {
+        NavigationStack {
             VStack {
                 if viewModel.isLoading {
                     ProgressView("Loading Recipes...")
@@ -25,12 +25,21 @@ struct RecipeListView: View {
                         .foregroundColor(.gray)
                         .padding()
                 } else {
-                    List(viewModel.filteredAndSortedRecipes) { recipe in
-                        NavigationLink(destination: RecipeDetailsView(recipe: recipe)) {
-                            RecipeRow(recipe: recipe)
+                    ScrollViewReader { proxy in
+                        List(viewModel.filteredAndSortedRecipes) { recipe in
+                            NavigationLink(value: recipe) {
+                                RecipeRow(recipe: recipe)
+                            }
+                        }
+                        .listStyle(PlainListStyle())
+                        .onChange(of: viewModel.scrollToID) { newValue in
+                            if let id = newValue {
+                                withAnimation {
+                                    proxy.scrollTo(id, anchor: .center)
+                                }
+                            }
                         }
                     }
-                    .listStyle(PlainListStyle())
                 }
             }
             .navigationTitle("Recipes")
@@ -62,6 +71,9 @@ struct RecipeListView: View {
                 text: $viewModel.searchText,
                 placement: .navigationBarDrawer(displayMode: .always)
             )
+            .navigationDestination(for: Recipe.self) { recipe in
+                RecipeDetailsView(recipe: recipe)
+            }
         }
     }
 }

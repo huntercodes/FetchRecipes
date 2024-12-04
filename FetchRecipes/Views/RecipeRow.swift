@@ -14,7 +14,7 @@ struct RecipeRow: View {
         HStack {
             // Custom Async Image with Cache Management
             CachedAsyncImage(
-                url: recipe.photo_url_small ?? URL(string: "https://via.placeholder.com/150")!,
+                url: recipe.photoURLSmall ?? URL(string: "https://via.placeholder.com/150")!,
                 placeholder: Image(systemName: "photo"),
                 cacheKey: recipe.id.uuidString
             )
